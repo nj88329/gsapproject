@@ -4,27 +4,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from '@gsap/react';
 
+
 gsap.registerPlugin(ScrollTrigger);
  gsap.registerPlugin(SplitText);
 
 const Hero = () => {
   
   const container = useRef(null); 
+useGSAP(() => {
+    const heading = container.current.querySelector("#heading");
+    if (!heading) return;
 
-  let split = SplitText.create("#heading", { type: "chars" });
+    const split = new SplitText(heading, { type: "chars" });
 
-  gsap.from(split.chars, {
-  y: -10,
-  autoAlpha: 0,
-  stagger: 0.05,
-   duration: 1.5,
+    gsap.from(split.chars, {
+      y: 50,
+      autoAlpha: 0,
+      stagger: 0.05,
+      duration: 2.5,
       ease: "power2.out",
-      repeat: Infinity,
-      yoyo: true
-});
+      repeat: -1,
+      yoyo: true,
+    });
+  }, { scope: container });
 
 
- 
+ // creating the timeline for each grid
   useGSAP(() => {
     const tl = gsap.timeline();
     tl.to(".left-grid", {
@@ -35,8 +40,9 @@ const Hero = () => {
       opacity: 1,
       duration: 1,
     }).to(".right-grid",{marginLeft:0,
+      marginTop : 0,
       opacity: 1,
-      duration: 1,
+      duration: 1, 
     })
     .to(".v-box", {
       // marginTop: 0,
@@ -52,7 +58,7 @@ useGSAP(() => {
   let boxes = gsap.utils.toArray(".v-box", wrapper);
   if (boxes.length === 0) return;
 
-  const boxHeight = boxes[0].offsetHeight + 16;
+  const boxHeight = boxes[0].offsetHeight + 8;
 
   // Clone and prepend (reverse order)
   boxes.slice().reverse().forEach(box => {
@@ -83,6 +89,7 @@ useGSAP(() => {
         opacity: 0.5,
         duration: 0.3,
         borderRadius :20,
+        zIndex : 10,
         ease: "power2.out",
         overwrite: "auto"
       });
@@ -92,6 +99,7 @@ useGSAP(() => {
       gsap.to(box, {
         scale: 1,
         opacity: 1,
+        zIndex : 1,
         duration: 0.3,
          borderRadius :0,
         ease: "power2.inOut",
@@ -108,34 +116,41 @@ useGSAP(() => {
   return (
     <section ref={container} 
      
-    className="w-full h-screen bg-black grid grid-cols-6 text-white ">
+    className="w-screen h-screen bg-black grid grid-cols-6 text-white">
       {/* Left Grid */}
 
-          <div  className="left-grid opacity-0 overflow-hidden bg-orange-800 flex flex-col p-4 h-4/5 ml-10 sm:flex">
-             <div className="v-box-wrapper flex flex-col">
-            <div className="v-box bg-blue-900 h-[100px] text-center p-4 m-2">01</div>
-            <div className="v-box bg-blue-900 h-[100px] text-center p-4 m-2">02</div>
-            <div className="v-box bg-blue-900 h-[100px] text-center p-4 m-2">03</div>
-            <div className="v-box bg-blue-900 h-[100px] text-center p-4 m-2">04</div>
+          <div  className="left-grid opacity-0  bg-gradient-to-t from-indigo-800 to violet-800
+           flex flex-col p-4 h-4/5 ml-10 sm:flex  overflow-hidden ">
+         <div className="v-box-wrapper flex flex-col">
+            <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">01</div>
+            <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">02</div>
+            <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">03</div>
+            <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">04</div>
             </div>
           </div>
 
-      <div className="middle-box bg-gray-800 col-span-4 col-start-2 m-3 h-4/5 mt-10 flex flex-col items-center  space-y-6">
+      <div className="middle-box col-span-6  sm:col-span-4 col-start-2 m-3 h-4/5 mt-10 flex flex-col items-center  space-y-6 
+      bg-gradient-to-r from-gray-800 from-20% via-violet-900  via-60% to-black-500 to-90% "
+     >
   
           {/* Navigation Bar */}
-      
-          <nav className="bg-white/30  shadow-md  px-4 py-1 rounded flex  justify-center gap-6  mt-3 w-full opacity-20 ">
+       <div className = 'bg-magenta-800   w-full h-30px '>
+          <nav className="bg-white/30  shadow-md  px-4 py-1 rounded flex  justify-center gap-6  mt-3 opacity-20 ">
             <h5 className="font-medium text-black text-yellow-500">Product</h5>
             <h5 className="font-medium text-black text-yellow-500">Contact</h5>
           </nav>
-    
+       
+       </div>
           {/* GSAP Heading */}
-                  <div className = ''>
-                    
+                  <div>
+                        <h6 id='heading' className=" items-center  tracking-normal 
+                        justify-center text-center font-semibold  text-7xl">
+                            SHIPPING ANIMATIONS 
+                          </h6>
                   </div>
         </div>
       {/* Right */}
-      <div className="bg-gray-900 h-4/5 mt-3 right-grid ml-10">Right</div>
+      <div className="bg-gray-900 h-4/5 mt-1 right-grid ml-10 ">Right</div>
     </section>
   );
 };
