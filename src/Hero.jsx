@@ -5,13 +5,14 @@ import { SplitText } from "gsap/SplitText";
 import { useGSAP } from '@gsap/react';
 
 
+
 gsap.registerPlugin(ScrollTrigger);
- gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText);
 
 const Hero = () => {
   
-  const container = useRef(null); 
-useGSAP(() => {
+const container = useRef(null); 
+  useGSAP(() => {
     const heading = container.current.querySelector("#heading");
     if (!heading) return;
 
@@ -49,6 +50,12 @@ useGSAP(() => {
       duration: 0.5,
     }, "-=0.5")
   }, { scope: container });
+
+
+
+
+
+
 
 
 useGSAP(() => {
@@ -113,14 +120,38 @@ useGSAP(() => {
 
 
 
+//entire screen animation on entering the viewport
+useGSAP(() => {
+  const heroEl = container.current;
+
+  gsap.fromTo(
+    heroEl,
+    { x: 100, opacity: 0 },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 2.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: heroEl,
+         start: "top 50%",
+        // end: "bottom center",
+        toggleActions: "play reverse play reverse",
+        
+      },
+    }
+  );
+}, { scope: container });
+
+
   return (
     <section ref={container} 
      
-    className="w-screen h-screen bg-black grid grid-cols-6 text-white">
+    className="Hero w-screen h-screen bg-gradient-to-b from-orange-900 to gray-500 grid grid-cols-6 text-white px-7">
       {/* Left Grid */}
 
-          <div  className="left-grid opacity-0  bg-gradient-to-t from-indigo-800 to violet-800
-           flex flex-col p-4 h-4/5 ml-10 sm:flex  overflow-hidden ">
+      <div className="left-grid hidden sm:flex flex-col col-span-1 bg-gradient-to-t from-indigo-800 to-orange-900 border-r-[3px] border-b-[3px] border-gray-500 p-4 h-4/5 overflow-hidden scrollbar-hide">
+
          <div className="v-box-wrapper flex flex-col">
             <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">01</div>
             <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">02</div>
@@ -128,10 +159,7 @@ useGSAP(() => {
             <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">04</div>
             </div>
           </div>
-
-      <div className="middle-box col-span-6  sm:col-span-4 col-start-2 m-3 h-4/5 mt-10 flex flex-col items-center  space-y-6 
-      bg-gradient-to-r from-gray-800 from-20% via-violet-900  via-60% to-black-500 to-90% "
-     >
+<div className="middle-box col-span-6 sm:col-span-4 sm:col-start-2 m-3 h-4/5 mt-10 flex flex-col items-center space-y-6 bg-gradient-to-r from-gray-800 from-20% via-violet-900 via-60% to-black-500 to-90%">
   
           {/* Navigation Bar */}
        <div className = 'bg-magenta-800   w-full h-30px '>
@@ -147,10 +175,14 @@ useGSAP(() => {
                         justify-center text-center font-semibold  text-7xl">
                             SHIPPING ANIMATIONS 
                           </h6>
+                          {/* <Splines/> */}
                   </div>
         </div>
       {/* Right */}
-      <div className="bg-gray-900 h-4/5 mt-1 right-grid ml-10 ">Right</div>
+     <div className="right-grid hidden sm:flex flex-col col-span-1 bg-gray-900 h-4/5 mt-1 border-l-[3px] border-b-[3px] border-red-500"> 
+           
+          </div>
+
     </section>
   );
 };
