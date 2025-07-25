@@ -4,6 +4,7 @@ import Footer from './Footer';
 import   Carousel  from "./Carousel";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import CompanionPage from './components/CompanionPage';
 
 function App() {
     
@@ -24,6 +25,7 @@ function App() {
               }
             ></Route>        
              <Route path = "/dashboard" element={<Dashboard/>}/>
+             <Route path = '/dashboard/learningcompanion' element = {<CompanionPage/>}> </Route>
           </Routes>
          </div>
       </Router>

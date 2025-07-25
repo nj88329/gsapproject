@@ -2,6 +2,7 @@ import React,{useRef} from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { NavLink } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,8 +59,11 @@ const Dashboard = () => {
       <nav className="p-2 w-full h-[8vh] bg-red-300 bg-opacity-30 flex  gap-6 text-sm sm:text-base">
         <h2 className = 'text-yellow-300  font-bold '>DASHBOARD</h2>
         <h3 className="text-white text-center mx-auto">HOME</h3>
-        <h3 className="text-white text-center ">Learning Companions</h3>
+            <NavLink to = {`/dashboard/learningcompanion`}>  
+            <h3 className="text-white text-center cursor-pointer transition-all hover:text-red-400">Learning Companions</h3>
+            </NavLink>
       </nav>
+
 
       {/* Cards Section */}
       <div className="dashboard-section flex flex-col min-h-fit  sm:flex-row  items-center sm:items-stretch gap-6 p-2 mb-2 justify-center">
