@@ -12,26 +12,38 @@ const Dashboard = () => {
   let containerRef = useRef();
     
 
-      useGSAP(()=>{
-          
-             gsap.fromTo('.card',{
-               xPercent: 100, opacity : 0
-             },
-             {
-                 xPercent: 0,
-               opacity : 1,
-                stagger: 0.2,
-                duration : 4,
-               scrollTrigger : {
-                       trigger: ".dashboard-section",
-                        start: "bottom center",
-                        end : "top 40%",
-                          ease: 'none'
-               }      
-            })
-          },[])
-  
 
+useGSAP(() => {
+
+  // gsap.utils.toArray(".card").forEach((card) => {
+  //   if (ScrollTrigger.isInViewport(card, 0.5)) {
+  //     gsap.set(card, { opacity: 1, y: 0, x: 0 });
+  //   }
+  // });
+
+
+           const tl = gsap.timeline();
+
+  tl.to('.card0', {
+    y: 0,
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+  })
+  .to('.card1', {
+    y: 0,
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+  })
+  .to('.card2', {
+    y: 0,
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+  });
+
+})
 
     useGSAP(()=>{
 
@@ -53,7 +65,8 @@ const Dashboard = () => {
 
 
   return (
-    <div ref={containerRef} className="min-h-screen w-full bg-gradient-to-t from-gray-800 via-violet-900 to-orange-500 p-1">
+    <div  className=" w-full bg-gradient-to-t from-gray-800 via-violet-900 to-orange-500 p-1 "
+        >
       
       {/* Navbar */}
       <nav className="p-2 w-full h-[8vh] bg-red-300 bg-opacity-30 flex  gap-6 text-sm sm:text-base">
@@ -66,16 +79,27 @@ const Dashboard = () => {
 
 
       {/* Cards Section */}
-      <div className="dashboard-section flex flex-col min-h-fit  sm:flex-row  items-center sm:items-stretch gap-6 p-2 mb-2 justify-center">
-        {/* Card */}
+      <div ref={containerRef} className="dashboard-section flex flex-col min-h-fit  sm:flex-row  items-center sm:items-stretch gap-6 p-2 mb-2 
+      justify-center bg-no-repeat bg-left  sm:bg-[length:auto]"  
+       style={{ 
+       
+          backgroundImage: "url('/glairsforwebsite.jpeg')",
+         
+       }}>
+        {/* Card */
+        
+        }
        
         {[
           { label: "Science", title: "Neural Network", color: "bg-red-500" },
           { label: "Computer", title: "DevOps", color: "bg-yellow-900" },
           { label: "Design", title: "Web", color: "bg-blue-400" }
         ].map((card, idx) => (
-          <div key={idx}   className= { `${card.color} transform card w-full sm:w-[300px] gap-3 h-[40vh] rounded-lg p-4 flex flex-col hover:scal2-125 hover:bg-yellow-400 hover:z-[200] transition-transform duration-300 `}>
-            <div className="bg-black w-[80px] h-[30px] rounded-md flex items-center justify-center mb-2">
+          // <div key={idx}   className= { `${card.color} transform card${idx} w-full sm:w-[300px] gap-3 h-[40vh] rounded-lg p-4 flex flex-col hover:scal2-125 hover:bg-yellow-400 hover:z-[200] transition-transform duration-300 `}>
+       <div key={idx}
+  className={`card${idx} ${card.color} transform w-full sm:w-[300px] gap-3 h-[40vh] rounded-lg p-4 flex flex-col hover:scal2-125 hover:bg-yellow-400 hover:z-[200] transition-transform duration-300 opacity-0 translate-y-10`}
+>
+       <div className="bg-black w-[80px] h-[30px] rounded-md flex items-center justify-center mb-2">
               <p className="text-gray-400 text-sm">{card.label}</p>
             </div>
             <h3 className="text-white text-sm sm:text-lg mb-4">{card.title}</h3>
@@ -87,7 +111,7 @@ const Dashboard = () => {
       </div>
 
       {/* Bottom Split Section */}
-      <div ref={bottomRef} className="flex flex-col  sm:flex-row gap-4 px-4 pb-6  text-sm sm:text-base lg:text-lg min-h-fit">
+      <div ref={bottomRef} className="flex flex-col  sm:flex-row gap-4 px-4 pb-6  text-sm sm:text-base lg:text-lg h-fit ">
         
         {/* Left Div (Recently Completed) */}
         <div className="leftgriddiv  sm:w-3/5 border-2 border-green-400 rounded-lg p-4  bg-opacity-10 ">
