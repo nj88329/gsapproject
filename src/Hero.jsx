@@ -10,10 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
 const Hero = () => {
-  
+
 const container = useRef(null); 
+ const headingRef = useRef(null);
+ 
+
   useGSAP(() => {
-    const heading = container.current.querySelector("#heading");
+    const heading = headingRef.current.querySelector(".heading");
     if (!heading) return;
 
     const split = new SplitText(heading, { type: "chars" });
@@ -50,11 +53,6 @@ const container = useRef(null);
       duration: 0.5,
     }, "-=0.5")
   }, { scope: container });
-
-
-
-
-
 
 
 
@@ -147,7 +145,7 @@ useGSAP(() => {
   return (
     <section ref={container} 
      
-    className="Hero w-screen h-screen bg-gradient-to-b from-orange-900 to gray-500 grid grid-cols-6 text-white px-7">
+    className="Hero  w-screen h-screen bg-gradient-to-b from-orange-900 to gray-500 grid grid-cols-6 text-white px-7">
       {/* Left Grid */}
 
       <div className="left-grid hidden sm:flex flex-col col-span-1 bg-gradient-to-t from-indigo-800 to-orange-900 border-r-[3px] border-b-[3px] border-gray-500 p-4 h-4/5 overflow-hidden scrollbar-hide">
@@ -159,7 +157,7 @@ useGSAP(() => {
             <div className="v-box  bg-gradient-to-t   from-purple-900 to violet-800 h-[100px] text-center p-4 m-1">04</div>
             </div>
           </div>
-<div className="middle-box col-span-6 sm:col-span-4 sm:col-start-2 m-3 h-4/5 mt-10 flex flex-col items-center space-y-6 bg-gradient-to-r from-gray-800 from-20% via-violet-900 via-60% to-black-500 to-90%">
+<div className="middle-box  col-span-6 sm:col-span-4 sm:col-start-2 m-3 h-4/5 mt-10 flex flex-col items-center space-y-6 bg-gradient-to-r from-gray-800 from-20% via-violet-900 via-60% to-black-500 to-90%">
   
           {/* Navigation Bar */}
        <div className = 'bg-magenta-800   w-full h-30px '>
@@ -169,15 +167,42 @@ useGSAP(() => {
           </nav>
        
        </div>
-          {/* GSAP Heading */}
-                  <div>
-                        <h6 id='heading' className=" items-center  tracking-normal 
-                        justify-center text-center font-semibold  text-7xl">
-                            SHIPPING ANIMATIONS 
-                          </h6>
-                          {/* <Splines/> */}
+                            <div className="relative w-full h-screen overflow-hidden bg-black rounded-b-full">
+                                {/* 🔽 VIDEO BACKGROUND */}r
+                                <video
+                                  autoPlay
+                                  muted
+                                  loop
+                                  playsInline
+                                  className="
+                                    object-cover
+
+                                    /* ✅ Desktop / Big screens (md and up) */
+                                    md:rotate-0 md:transform-none md:w-full md:h-full  
+
+                                    /* ✅ Mobile / Small screens (below md) */
+                                    absolute top-1/2 left-1/2
+                                    w-[100vh] h-[100vw] 
+                                    rotate-[270deg] 
+                                    transform -translate-x-1/2 -translate-y-1/2 object-fill
+                                  "
+                                >
+                                  <source src="/video.mp4" type="video/mp4" />
+                                </video>
+
+                                {/* 🔼 TEXT ON TOP OF VIDEO */}
+                                <div ref={headingRef} className=" absolute inset-0 z-30 flex justify-center ">
+                                 <h2 className="heading  text-lg sm:text-xl md:text-6xl font-bold text-white">
+                                  Shipping Animations
+                                </h2>
+                                </div>
+                              </div>
+
+
+
+                           {/* </div> */}
                   </div>
-        </div>
+      
       {/* Right */}
      <div className="right-grid hidden sm:flex flex-col col-span-1 bg-gray-900 h-4/5 mt-1 border-l-[3px] border-b-[3px] border-red-500"> 
            

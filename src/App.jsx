@@ -5,6 +5,7 @@ import   Carousel  from "./Carousel";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import CompanionPage from './components/CompanionPage';
+import Interview from './components/Interview';
 
 function App() {
     
@@ -26,6 +27,7 @@ function App() {
             ></Route>        
              <Route path = "/dashboard" element={<Dashboard/>}/>
              <Route path = '/dashboard/learningcompanion' element = {<CompanionPage/>}> </Route>
+             <Route path ='/dashboard/interviewPage' element={<Interview/>}></Route>
           </Routes>
          </div>
       </Router>
