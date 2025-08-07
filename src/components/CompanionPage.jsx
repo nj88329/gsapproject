@@ -234,3 +234,4 @@ const divRef = useRef(null);
 )}
 
 export default CompanionPage
+

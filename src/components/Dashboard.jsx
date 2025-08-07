@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { NavLink } from 'react-router-dom';
+import  Items  from './Items';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,7 +66,7 @@ useGSAP(() => {
 
 
   return (
-    <div  className=" w-full bg-gradient-to-t from-gray-800 via-violet-900 to-orange-500 p-1 "
+    <div  className=" w-full bg-gradient-to-t from-gray-800 via-violet-900 to-orange-500 p-1  mb-8"
         >
       
       {/* Navbar */}
@@ -150,7 +151,7 @@ useGSAP(() => {
         {/* Right Div */}
         <div className="rightgriddiv  w-[80%] sm:w-2/5 border-2 border-yellow-400 rounded-lg p-4  bg-opacity-10 flex flex-col ">
           {/* Placeholder */}
-          <div className = ' rounded-full bg-opacity-80 bg-gradient-to-l from-green-700 via-orange-900 to-orange-900'>
+          <div className = 'rounded-full bg-opacity-80 bg-gradient-to-l from-green-700 via-orange-900 to-orange-900'>
           <h6 className="mx-auto w-fit mb-2  font-bold text-center text-red-500 md:items-stretch bg-black w-[90%] sm:w-[15vw] md:w-[20vw] lg:[25vw] md:items-stretch text-sm sm:text-base md:tet-lg flex items-center justify-center  rounded-md px-2 py-1">
                   Start Learning your way
           </h6>
@@ -170,16 +171,17 @@ useGSAP(() => {
                          </small>
                                      
           </div>
-          <button className = ' flex items-center justify-center w-[70%] rounded-xl mx-auto bg-black text-red-600 font-bold'>
-            
+          <button className = 'flex items-center justify-center w-[70%] rounded-xl mx-auto bg-black text-red-600 font-bold'>
                 Make Connections
-             
           </button>
         </div>
       </div>
       </div>
+    
     </div>
   );
 };
 
 export default Dashboard;
+
+

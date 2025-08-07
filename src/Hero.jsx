@@ -205,7 +205,7 @@ useGSAP(() => {
       
       {/* Right */}
      <div className="right-grid hidden sm:flex flex-col col-span-1 bg-gray-900 h-4/5 mt-1 border-l-[3px] border-b-[3px] border-red-500"> 
-           
+             
           </div>
 
     </section>

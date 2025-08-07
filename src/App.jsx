@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import CompanionPage from './components/CompanionPage';
 import Interview from './components/Interview';
+import Items from './components/Items'
 
 function App() {
     
@@ -25,7 +26,7 @@ function App() {
                  HomeElement
               }
             ></Route>        
-             <Route path = "/dashboard" element={<Dashboard/>}/>
+             <Route path = "/dashboard" element={DashboardPage}/>
              <Route path = '/dashboard/learningcompanion' element = {<CompanionPage/>}> </Route>
              <Route path ='/dashboard/interviewPage' element={<Interview/>}></Route>
           </Routes>
@@ -45,3 +46,11 @@ const HomeElement = (
     <Carousel />
   </>
 );
+
+
+const DashboardPage = (
+<>
+  <Dashboard/>  
+   <Items/>
+</>
+)
